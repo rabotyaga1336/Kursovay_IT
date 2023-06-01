@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class CarEntity {
+    //идентификация сущности Car
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +22,7 @@ public class CarEntity {
     @Column(name = "isbooked")
     private boolean isBooked;
 
+    //обьявление связей сущности Car
     @ManyToOne(cascade = CascadeType.PERSIST)
     private CarShowroomEntity carShop;
     @OneToOne(cascade = CascadeType.PERSIST)

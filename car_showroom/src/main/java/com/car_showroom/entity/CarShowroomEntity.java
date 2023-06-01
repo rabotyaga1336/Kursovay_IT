@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+//идентификация сущности Car_Showroom
 @Entity
 @Table(name = "carshowrooms")
 @Data
@@ -20,6 +21,7 @@ public class CarShowroomEntity {
     private String name;
     private Long cntEmpl;
 
+    //обьявление связей для сущности Car_Showroom
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private List<ClientEntity> clients = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

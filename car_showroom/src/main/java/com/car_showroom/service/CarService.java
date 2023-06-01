@@ -23,10 +23,12 @@ public class CarService {
         this.carShowroomRepository = carShowroomRepository;
     }
 
+    //метод вывода всех авто
     public ResponseEntity<List<CarDTO>> cars() {
         return ResponseEntity.ok().body(carRepository.findAll().stream().map(CarDTO::toCarDto).toList());
     }
 
+    //метод вывода авто по id
     public ResponseEntity<CarDTO> car(Long id) {
         try {
             return ResponseEntity.ok().body(CarDTO.toCarDto(carRepository.findById(id).orElseThrow()));
@@ -35,6 +37,7 @@ public class CarService {
         }
     }
 
+    //метод добавления авто
     public ResponseEntity<CarDTO> addCar(CarEntity car, Long carShop) {
         try {
             CarShowroomEntity carShowroom = carShowroomRepository.findById(carShop).orElseThrow();
@@ -49,6 +52,7 @@ public class CarService {
         }
     }
 
+    //метод обновления информации об овто
     public ResponseEntity<CarDTO> updateCar(CarEntity changedCar, Long id) {
         try {
             CarEntity car = carRepository.findById(id).orElseThrow();
@@ -67,6 +71,7 @@ public class CarService {
         }
     }
 
+    //метод удаления авто
     public ResponseEntity<String> deleteCar(Long id) {
         try {
             CarEntity car = carRepository.findById(id).orElseThrow();

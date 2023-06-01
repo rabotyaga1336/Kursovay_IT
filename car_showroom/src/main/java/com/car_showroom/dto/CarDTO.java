@@ -24,6 +24,7 @@ public class CarDTO {
         this.clientId = clientId;
     }
 
+    //
     public static CarDTO toCarDto(CarEntity car) {
         return new CarDTO(car.getId(), car.getName(), car.getPrice(), car.getDesc(), car.getIsBooked(), car.getCarShop().getId(), car.getClient() != null ? car.getClient().getId() : 0L);
     }

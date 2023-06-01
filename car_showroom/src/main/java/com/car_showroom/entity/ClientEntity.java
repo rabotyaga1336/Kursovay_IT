@@ -14,12 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientEntity {
+    //идентификация сущности Client
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String fio;
     private String phNum;
 
+    //обьявление связей для сущности Client
     @OneToOne(cascade = CascadeType.PERSIST)
     private CarEntity car;
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)

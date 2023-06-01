@@ -20,10 +20,12 @@ public class CarShowroomService {
         this.carShowroomRepository = carShowroomRepository;
     }
 
+    //метод вывода всех автосалонов
     public ResponseEntity<List<CarShowroomDTO>> carShowrooms() {
         return ResponseEntity.ok().body(carShowroomRepository.findAll().stream().map(CarShowroomDTO::toCarShowroomDto).toList());
     }
 
+    //метод вывода автосалона по id
     public ResponseEntity<CarShowroomDTO> carShowroom(Long id) {
         try {
             return ResponseEntity.ok().body(CarShowroomDTO.toCarShowroomDto(carShowroomRepository.findById(id).orElseThrow()));
@@ -32,7 +34,7 @@ public class CarShowroomService {
         }
     }
 
-    //вычисляемое поле находит стоимость всех машин автосалона
+    //метод вычисления стоимости всех машин автосалона
     public ResponseEntity<String> getPriceOfAllCars(Long id) {
         try {
             CarShowroomEntity carShowroom = carShowroomRepository.findById(id).orElseThrow();
@@ -42,10 +44,12 @@ public class CarShowroomService {
         }
     }
 
+    //метод создания автосалона
     public ResponseEntity<CarShowroomDTO> createCarShowroom(CarShowroomEntity carShowroom) {
         return ResponseEntity.ok().body(CarShowroomDTO.toCarShowroomDto(carShowroomRepository.save(carShowroom)));
     }
 
+    //метод обновления информации об автосалоне
     public ResponseEntity<CarShowroomDTO> updateCarShowroom(CarShowroomEntity changedCarShowroom, Long id) {
         try {
             CarShowroomEntity carShowroom = carShowroomRepository.findById(id).orElseThrow();
@@ -61,6 +65,7 @@ public class CarShowroomService {
         }
     }
 
+    //метод удаления автосалона
     public ResponseEntity<String> deleteCarShowroom(Long id) {
         try {
             CarShowroomEntity carShowroom = carShowroomRepository.findById(id).orElseThrow();

@@ -28,10 +28,12 @@ public class ClientService {
         this.carShowroomRepository = carShowroomRepository;
     }
 
+    //метод вывода всех клиентов
     public ResponseEntity<List<ClientDTO>> clients() {
         return ResponseEntity.ok().body(clientRepository.findAll().stream().map(ClientDTO::toClientDto).toList());
     }
 
+    //метод вывода клиента по id
     public ResponseEntity<ClientDTO> client(Long id) {
         try {
             return ResponseEntity.ok().body(ClientDTO.toClientDto(clientRepository.findById(id).orElseThrow()));
@@ -40,6 +42,7 @@ public class ClientService {
         }
     }
 
+    //метод добавления клиента
     public ResponseEntity<ClientDTO> addClient(ClientEntity client, Long id) {
         try {
             CarShowroomEntity carShowroom = carShowroomRepository.findById(id).orElseThrow();
@@ -54,6 +57,7 @@ public class ClientService {
         }
     }
 
+    //метода "привязки" авто к клиенту/покупки авто клиентом
     public ResponseEntity<ClientDTO> addCarToClient(Long carId, Long clientId) {
         try {
             CarEntity car = carRepository.findById(carId).orElseThrow();
@@ -75,6 +79,7 @@ public class ClientService {
         }
     }
 
+    //метода "отвязки" авто от клиенту/продажи авто клиентом
     public ResponseEntity<ClientDTO> deleteCarFromUser(Long clientId) {
         try {
             ClientEntity client = clientRepository.findById(clientId).orElseThrow();
@@ -89,6 +94,7 @@ public class ClientService {
         }
     }
 
+    //метод обновления информации о клиенте
     public ResponseEntity<ClientDTO> updateClient(ClientEntity changedClient, Long id) {
         try {
             ClientEntity client = clientRepository.findById(id).orElseThrow();
@@ -104,6 +110,7 @@ public class ClientService {
         }
     }
 
+    //метод удаления клиента
     public ResponseEntity<String> deleteClient(Long id) {
         try {
             ClientEntity client = clientRepository.findById(id).orElseThrow();
